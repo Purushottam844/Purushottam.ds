@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+void removeElement(int arr[], int *size, int value) {
+    int i, j;
+    for (i = 0; i < *size; i++) {
+        if (arr[i] == value) {
+            // Shift elements to the left
+            for (j = i; j < *size - 1; j++) {
+                arr[j] = arr[j + 1];
+            }
+            (*size)--; // Decrease the size
+            return; // Exit after removing the first occurrence
+        }
+    }
+    printf("Element not found.\n");
+}
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int valueToRemove = 30;
+
+    printf("Original array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    removeElement(arr, &size, valueToRemove);
+
+    printf("Array after removal: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
